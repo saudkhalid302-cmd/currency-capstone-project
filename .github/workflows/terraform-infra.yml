@@ -21,7 +21,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          # Pehle sahi folder mein jao jahan terraform ki files hain
-          cd dbt_project/my_dbt_project/terraform
+          cd terraform
           terraform init
           terraform apply -auto-approve
