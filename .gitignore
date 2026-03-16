@@ -1,8 +1,17 @@
+# Terraform files (Ye folder humein git par nahi chahiye)
+terraform/.terraform/
+terraform/*.tfstate*
 
+# Data files (Ye files bhi local hoti hain)
+data/*.json
+data/*.csv
+
+# Python files
+__pycache__/
+.env
+
+# General
+.DS_Store
 target/
 dbt_packages/
 logs/
-<<<<<<< HEAD
-.env
-=======
->>>>>>> fd711e00b6991d8c07c8896ba470bbfa271be207
