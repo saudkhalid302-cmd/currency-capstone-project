@@ -1,0 +1,8 @@
+
+target/
+dbt_packages/
+logs/
+<<<<<<< HEAD
+.env
+=======
+>>>>>>> fd711e00b6991d8c07c8896ba470bbfa271be207
