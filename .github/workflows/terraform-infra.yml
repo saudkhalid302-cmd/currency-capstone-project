@@ -1,10 +1,10 @@
 name: "Terraform Infrastructure"
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -20,7 +20,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-1"
         run: |
-          cd terraform
+          # Is line ka matlab hai: "Jo bhi terraform folder mile usmein chale jao"
+          cd $(find . -maxdepth 2 -type d -name "terraform" | head -n 1)
           terraform init
           terraform apply -auto-approve
