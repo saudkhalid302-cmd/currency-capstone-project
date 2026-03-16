@@ -1,6 +1,10 @@
 name: "Terraform Infrastructure"
+
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   terraform:
@@ -13,20 +17,11 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init & Apply
-<<<<<<< HEAD
-<<<<<<< HEAD
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          cd terraform
+          # Pehle sahi folder mein jao jahan terraform ki files hain
+          cd dbt_project/my_dbt_project/terraform
           terraform init
           terraform apply -auto-approve
-=======
-        run: |
-          echo "Terraform initialized"
->>>>>>> 3f4bde50189bdebe84496db1c44f78c052987af8
-=======
-        run: |
-          echo "Terraform initialized"
->>>>>>> fd711e00b6991d8c07c8896ba470bbfa271be207
