@@ -1,5 +1,6 @@
 import boto3
 import os
+import glob
 from dotenv import load_dotenv
 
 # .env file se configurations load karein
@@ -25,7 +26,13 @@ def upload_to_s3(file_path):
         print(f"❌ Error uploading to S3: {e}")
 
 if __name__ == "__main__":
-    # Jo file extract.py ne banayi thi, uska path yahan likhein
-    # Misal ke taur par:
-    latest_file = "data/raw_rates_20260307_145906.json" 
-    upload_to_s3(latest_file)
+    # 'data' folder mein se saari JSON files ki list lein
+    list_of_files = glob.glob('data/*.json')
+    
+    if list_of_files:
+        # Sabse nayi (latest) file khud hi select karein
+        latest_file = max(list_of_files, key=os.path.getctime)
+        print(f"Found latest file: {latest_file}")
+        upload_to_s3(latest_file)
+    else:
+        print("❌ Error: 'data' folder mein koi JSON file nahi mili!")
