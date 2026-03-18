@@ -1,0 +1,27 @@
+name: "Currency ETL Pipeline"
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install pandas boto3 snowflake-connector-python requests python-dotenv
+
+      - name: Check Code Syntax
+        run: |
+          # Ye step sirf check karega ke aapka code sahi hai ya nahi
+          python3 -m py_compile src/extract.py src/transform.py src/load_to_snowflake.py
